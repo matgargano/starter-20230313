@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    count: 0
+    count: 0,
+    incrementBy: 3,
 }
 
 const counterSlice = createSlice({
@@ -9,14 +10,20 @@ const counterSlice = createSlice({
     initialState,
     reducers: {
         increment: (state) => {
-
-            state.count += 1;
+            state.count += state.incrementBy;
         },
         decrement: (state) => {
-            state.count -= 1;
+            state.count -= state.incrementBy;
+        },
+        setIncrementBy: (state, action) => {
+
+            state.incrementBy = parseFloat(action.payload.value);
         }
     }
 });
 
-export const {increment, decrement} = counterSlice.actions;
+
+
+
+export const {increment, decrement, setIncrementBy} = counterSlice.actions;
 export default counterSlice.reducer;
